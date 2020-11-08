@@ -1,6 +1,5 @@
 package com.openbank.util;
 
-import com.google.gson.Gson;
 import com.mongodb.client.MongoDatabase;
 import net.serenitybdd.core.Serenity;
 import org.bson.Document;
@@ -17,13 +16,11 @@ public class SessionStore {
 
     static SessionStore INSTANCE;
     private static MongoDatabase database;
-    final Gson gson = new Gson();
     final String collection = "_output";
 
     private SessionStore(MongoDatabase database) {
         SessionStore.database = database;
-        if (database.getCollection(collection) == null)
-            database.createCollection(collection);
+        database.getCollection(collection);
         if (database.getCollection(collection).find(session()).first() == null)
             database.getCollection(collection).insertOne(new Document("name", "session"));
     }
@@ -71,15 +68,6 @@ public class SessionStore {
      */
     public Object get(Object key) {
         return Serenity.getCurrentSession().get(key);
-    }
-
-    /**
-     * write serenity session to database
-     */
-    public void writeSession() {
-        Document session = new Document();
-        Serenity.getCurrentSession().forEach((key, value) -> session.put(String.valueOf(key), value));
-        database.getCollection(collection).findOneAndReplace(session(), session);
     }
 
     public Map<String,String> asMap() {

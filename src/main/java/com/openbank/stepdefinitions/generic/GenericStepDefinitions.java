@@ -84,11 +84,11 @@ public class GenericStepDefinitions extends MasterStepDefinitions {
 			passPosition.then().statusCode(200);
 			List<String> positions = passPosition.jsonPath().getList("positions");
 			if (positions.size() >= 1 && !positions.get(0).equals("*")) {
-				String passwordModified = "";
+				StringBuilder passwordModified = new StringBuilder();
 				for (String position : positions) {
-					passwordModified += password.charAt(Integer.parseInt(position) - 1);
+					passwordModified.append(password.charAt(Integer.parseInt(position) - 1));
 				}
-				password = passwordModified;
+				password = passwordModified.toString();
 			}
 			ObjectMapper objMapper = new ObjectMapper();
 
@@ -140,11 +140,11 @@ public class GenericStepDefinitions extends MasterStepDefinitions {
 			passPosition.then().statusCode(200);
 			List<String> positions = passPosition.jsonPath().getList("positions");
 			if (positions.size() >= 1 && !positions.get(0).equals("*")) {
-				String passwordModified = "";
+				StringBuilder passwordModified = new StringBuilder();
 				for (String position : positions) {
-					passwordModified += password.charAt(Integer.parseInt(position) - 1);
+					passwordModified.append(password.charAt(Integer.parseInt(position) - 1));
 				}
-				password = passwordModified;
+				password = passwordModified.toString();
 			}
 			ObjectMapper objMapper = new ObjectMapper();
 
@@ -800,12 +800,8 @@ public class GenericStepDefinitions extends MasterStepDefinitions {
 									valueToModify = Integer.parseInt(valueToModify.toString());
 									((ObjectNode) (objectDataParent)).put(fieldToModify, (int) valueToModify);
 								} catch (NumberFormatException e2) {
-									try {
-										valueToModify = Long.parseLong(valueToModify.toString());
-										((ObjectNode) (objectDataParent)).put(fieldToModify, (long) valueToModify);
-									} catch (NumberFormatException e3) {
-										throw e3;
-									}
+									valueToModify = Long.parseLong(valueToModify.toString());
+									((ObjectNode) (objectDataParent)).put(fieldToModify, (long) valueToModify);
 								}
 							}
 						}

@@ -30,6 +30,6 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
 import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
-@CucumberOptions(strict = false, features = "features/",
+@CucumberOptions(features = "features/",
 			plugin = { "pretty", "json:target/cucumber-json-report.json", "html:target/cucumber-html-report" })
 public class CucumberTestSuite {}

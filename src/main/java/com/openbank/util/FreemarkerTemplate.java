@@ -24,16 +24,10 @@ public class FreemarkerTemplate {
         return configuration;
     }
 
-    /**
-     * The template string -> Templte
-     * @param templateStr
-     * @return
-     */
     public Template getTemplate(String templateStr) {
         try {
-            Template t = new Template("templateStr", new StringReader(templateStr),
+            return new Template("templateStr", new StringReader(templateStr),
                     getConfiguration());
-            return t;
         } catch (Exception e) {
             throw new IllegalStateException("Could not load template", e);
         }

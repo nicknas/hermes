@@ -9,15 +9,9 @@ package com.openbank.util;
 
 
 import net.thucydides.core.util.SystemEnvironmentVariables;
-import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Properties;
-import java.util.Random;
 
 /**
  * This class is used to expand variables in the format <code>${variable}</code>$, using values from
@@ -80,80 +74,6 @@ public class VariablesExpander implements Serializable {
     public String replace(String str) {
         return substitutor.replace(str);
     }
-    
-    //Method to create invalid Date of Birth
-    public static String randomInvalidDOB() {
-    	Random rand = new Random(); 
-    	int value = rand.nextInt(50) + 13; 
-    	return  "1990" + value + "09";
-    }
-    
-    //Method to create invalid Date of Birth
-    public static String randomInvalidresidenceTCode() {
-    	
-    	final String alphabet = "BCDE";
-        final int N = alphabet.length();
 
-        Random r = new Random();
-        String str = null;
 
-        for (int i = 0; i < 4; i++) {
-            str = str + alphabet.charAt(r.nextInt(N));
-        }
-		return str;
-    }
-    
-    
-    
-    //Method to create invalid 3 digit code
-    public static String randomInvalidTCode() {
-    	Random rand = new Random(); 
-    	int value = rand.nextInt(99) + 100; 
-    	return  value + "";
-    }
-    
-  //Method to create invalid 12 digit code
-    public static String randomInvalidLegalDocumentID() {
-    	Random rand = new Random(); 
-    	int value = rand.nextInt(99) + 100; 
-    	return  value + "qawsseqeeqeqeqeqeqeqewwassawwq";
-    }
-        
-    //Method to create invalid 4 char code
-    public static String randomInvalidLegalDocumentType() {
-    	Random rand = new Random(); 
-    	int value = rand.nextInt(5000) + 177; 
-    	return  value + "tttwrrwrfafrqadaddafvsdjjdkkdkdkdhh";
-    }
-    
-  //Method to create Invalid DepositId of 10 digit
-    public static String randonInvalidDepositId() {
-       String invalidDepositId = "200" + RandomStringUtils.random(6, true, true) + "@";
-       return invalidDepositId;
-    }
-    
-    //Method to fetch system date and return in format of YYYY-MM-DD
-    public static String systemDate() {
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-//		System.out.println(dateFormat.format(date));
-		
-    	return dateFormat.format(date).toString();
-    }
-    
-    //Method to add months in current system date
-    public static String addMonthToSystemDate(int noOfMonths) {
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		Calendar cal = Calendar.getInstance();
-		
-        cal.setTime(date);
-        cal.add(Calendar.MONTH, noOfMonths);
-        System.out.println(dateFormat.format(cal.getTime()));
-    	
-    	return dateFormat.format(cal.getTime()).toString();
-    }
-    
-    
-        
 }

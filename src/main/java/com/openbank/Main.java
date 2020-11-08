@@ -22,11 +22,11 @@ import org.junit.runner.JUnitCore;
 
 public class Main {
 
-    public static void main(String args[]) throws RuntimeException {
+    public static void main(String[] args) throws RuntimeException {
         if (args.length == 1) {
             JsonNode mongoCredentials = SecretsManagerAPI.getSecret("mongoAPITestingCredentials");
             String jiraAuth = ParameterStoreAPI.getJiraAuthorization();
-            EnvironmentVariables env = (EnvironmentVariables) Injectors.getInjector()
+            EnvironmentVariables env = Injectors.getInjector()
                     .getInstance(EnvironmentVariables.class);
             String server = mongoCredentials.get("host").asText() + ":" + mongoCredentials.get("port").asText();
             env.setProperty("mongo.server", server);
@@ -71,7 +71,7 @@ public class Main {
     }
 
     private static void runTests() {
-        EnvironmentVariables env = (EnvironmentVariables) Injectors.getInjector()
+        EnvironmentVariables env = Injectors.getInjector()
                 .getInstance(EnvironmentVariables.class);
         try {
             JiraXrayApi.setEnvironmentData(expand("${jira.execution}"));
@@ -108,6 +108,6 @@ public class Main {
     }
 
     private static String getScenarioTags() {
-        return JiraXrayApi.getTestIds().stream().collect(Collectors.joining(","));
+        return String.join(",", JiraXrayApi.getTestIds());
     }
 }

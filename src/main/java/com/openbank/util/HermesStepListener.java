@@ -40,10 +40,10 @@ public class HermesStepListener implements StepListener {
      * The Java class (if any) containing the tests.
      */
     private Class<?> testSuite;
-    private List<String> storywideIssues;
-    private List<TestTag> storywideTags;
+    private final List<String> storywideIssues;
+    private final List<TestTag> storywideTags;
     private static final TestOutcome UNAVAILABLE_TEST_OUTCOME = new TestOutcome("Test outcome unavailable"); // new UnavailableTestOutcome("Test outcome unavailable");
-    private Map<String, TestOutcome> testsWithJiraId;
+    private final Map<String, TestOutcome> testsWithJiraId;
 
     private TestOutcome unavailableTestOutcome() {
         return UNAVAILABLE_TEST_OUTCOME;

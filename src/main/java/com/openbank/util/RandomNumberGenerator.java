@@ -14,22 +14,15 @@ public class RandomNumberGenerator {
 
 	public static int random8DigitGenerator() {
 		Random rand = new Random();
-		int n = (int) (10000000 + rand.nextFloat() * 90000000);
-		return n;
+		return (int) (10000000 + rand.nextFloat() * 90000000);
 	}
 
 	public static String random19DigitGenerator() {
-		String cardId = "CRD" + RandomStringUtils.random(16, false, true);
-		return cardId;
+		return "CRD" + RandomStringUtils.random(16, false, true);
 	}
 
-	public static String random9DigitGenerator() {
-		String cmsAccountId = RandomStringUtils.random(9, false, true);
-		return cmsAccountId;
-	}
 	public static String random11DigitGenerator() {
-		String cmsAccountId = RandomStringUtils.random(11, false, true);
-		return cmsAccountId;
+		return RandomStringUtils.random(11, false, true);
 	}
 
 }
